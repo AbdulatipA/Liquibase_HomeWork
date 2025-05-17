@@ -1,0 +1,39 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-course-table
+      author: Jack White
+      changes:
+        - createTable:
+            tableName: courses
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: title
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: description
+                  type: TEXT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: duration_days
+                  type: INT
+                  defaultValue: 30
+                  constraints:
+                    nullable: false
+
+        - createIndex:
+            tableName: courses
+            indexName: idx_course_title
+            unique: true
+            columns:
+              - column:
+                  name: title
